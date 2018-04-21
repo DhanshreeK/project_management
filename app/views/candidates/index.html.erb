@@ -1,0 +1,62 @@
+<p>&nbsp;</p>
+<div class="col-md-6">
+<%= form_tag candidates_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: 'form-control' %><br>
+    <%= submit_tag "Search", :name => nil, class: 'btn btn-success' %>
+  </p>
+<% end %>
+</div>
+<%- model_class = Candidate -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:college_name) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:pproject_name) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:contact) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%= link_to candidate.id, candidate_path(candidate) %></td>
+        <td><%= candidate.name %></td>
+        <td><%= candidate.college_name %></td>
+        <td><%= candidate.status %></td>
+        <td><%= candidate.pproject_name %></td>
+        <td><%= candidate.email %></td>
+        <td><%= candidate.contact %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      candidate_path(candidate), :class => 'btn btn-default btn-xs' %>
+                      <% if current_user.role == 'SuperAdmin'%>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_candidate_path(candidate), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      candidate_path(candidate),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+                         <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+                      <% if current_user.role == 'SuperAdmin'%>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_candidate_path,
+            :class => 'btn btn-primary' %>
+<%end%>
+            <%= link_to 'New Equiry',
+            new_enquiry_path,
+            :class => 'btn btn-warning' %>
