@@ -16,6 +16,13 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :enquiry_number, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :enquiry_number, :class => 'form-control', readonly: true %>
+    </div>
+    <%=f.error_span(:enquiry_number) %>
+  </div>
+  <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :name, :class => 'form-control' %>
@@ -37,9 +44,30 @@
     <%=f.error_span(:address) %>
   </div>
   <div class="form-group">
-    <%= f.label :message, :class => 'control-label col-lg-2' %>
+    <%= f.label :email, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :message, :class => 'form-control' %>
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:email) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :payment_status, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :payment_status, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:payment_status) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :amount_paid, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :amount_paid, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:amount_paid) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'project status', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :message, :class => 'form-control' %>
     </div>
     <%=f.error_span(:message) %>
   </div>

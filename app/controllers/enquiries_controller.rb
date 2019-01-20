@@ -15,6 +15,7 @@ class EnquiriesController < ApplicationController
   # GET /enquiries/new
   def new
     @enquiry = Enquiry.new
+    @enquiry.enquiry_number = Enquiry.set_enquiry_number
   end
 
   # GET /enquiries/1/edit
@@ -69,6 +70,6 @@ class EnquiriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enquiry_params
-      params.require(:enquiry).permit(:name, :contact, :address, :message)
+      params.require(:enquiry).permit(:email, :name, :contact, :address, :message, :payment_status, :amount_paid, :enquiry_number)
     end
 end
